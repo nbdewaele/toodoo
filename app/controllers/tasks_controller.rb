@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+	before_action :new_task, only: [:new, :index]
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -14,7 +16,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
   end
 
   # GET /tasks/1/edit
@@ -66,6 +67,10 @@ class TasksController < ApplicationController
     def set_task
       @task = Task.find(params[:id])
     end
+
+		def new_task
+			@task = Task.new
+		end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
